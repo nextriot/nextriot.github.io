@@ -108,8 +108,22 @@ for their projects again and again.
 
 #### Some highlighted code
 
-```js
-const some = {}
+```tsx {3-5}
+interface Props {
+  x: string
+}
+
+const Component = ({ x }: Props) => (
+  <div>
+    <span>{x}</span>
+  </div>
+)
+
+const Component = ({ x }: Props) => (
+  <div>
+    <span>{x}</span>
+  </div>
+)
 ```
 
 #### A live code sample:

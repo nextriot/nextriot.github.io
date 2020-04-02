@@ -1,0 +1,16 @@
+body {
+  --codeBg: #011627;
+  --codeHighlight: #022a4b;
+  --codeText0: #ffffff;
+  --codeText1: #ffcc99;
+  --codeHighlightAccent: #ffa7c4;
+}
+
+.highlight-line {
+  background-color: var(--codeHighlight);
+  margin: 0 -0.75rem;
+  padding: 0 0.75rem;
+  border-left: 0.25em solid var(--codeHighlightAccent);
+  margin-right: -1.3125rem;
+  margin-left: -1.3125rem;
+}
