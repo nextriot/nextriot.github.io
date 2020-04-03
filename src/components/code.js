@@ -40,8 +40,8 @@ const theme = {
 const LineNo = styled.span`
   display: inline-flex;
   justify-content: flex-end;
-  padding-right: 0.5rem;
-  width: 2em;
+  padding-right: 2rem;
+  width: 4em;
   user-select: none;
   opacity: 0.3;
 `
@@ -58,6 +58,10 @@ const Pre = styled.pre`
   overflow: initial;
   float: left; /* 1 */
   min-width: 100%; /* 2 */
+`
+
+const CustomLiveEditor = styled(LiveEditor)`
+  border-radius: 10px;
 `
 
 const RE = /{([\d,-]+)}/
@@ -84,7 +88,7 @@ export const Code = ({ codeString, language, metastring, ...props }) => {
   if (props["react-live"]) {
     return (
       <LiveProvider code={codeString} noInline={true} theme={theme}>
-        <LiveEditor padding={0} />
+        <CustomLiveEditor padding={"1.3125rem"} />
         <LiveError />
         <LivePreview />
       </LiveProvider>
@@ -116,7 +120,7 @@ export const Code = ({ codeString, language, metastring, ...props }) => {
                 ) {
                   lineNumberElem = null
                 } else {
-                  lineNumberElem = <LineNo>{i + 1}</LineNo>
+                  lineNumberElem = <LineNo className="number">{i + 1}</LineNo>
                 }
                 return (
                   <div key={i} {...lineProps}>
