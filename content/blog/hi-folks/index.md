@@ -129,6 +129,8 @@ const Component = ({ x }: Props) => (
 #### A live code sample:
 
 ```js react-live
-const onClick = () => { alert('clicked') }
+const onClick = () => {
+  alert('clicked')
+}
 render(<button onClick={onClick}>Click Me!</button>)
 ```

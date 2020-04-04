@@ -3,6 +3,12 @@ import { Link as GLink } from 'gatsby'
 
 import { rhythm, scale } from '../../utils/typography'
 
+const Container = styled.div`
+  color: var(--textNormal);
+  background: var(--bg);
+  transition: color 0.2s ease-out, background 0.2s ease-out;
+  min-height: 100vh;
+`
 const Wrapper = styled.div`
   margin-left: auto;
   margin-right: auto;
@@ -20,6 +26,7 @@ const Header1 = styled.h1`
   margin-bottom: 0;
   margin-top: 0;
   white-space: nowrap;
+  color: var(--textNormal);
 `
 const Header3 = styled.h3`
   font-family: 'Montserrat', sans-serif;
@@ -27,6 +34,7 @@ const Header3 = styled.h3`
   margin-bottom: 0;
   line-height: 2.625rem;
   height: 42;
+  color: var(--header);
 `
 const Link = styled(GLink)`
   box-shadow: none;
@@ -34,4 +42,4 @@ const Link = styled(GLink)`
   color: inherit;
 `
 
-export { Wrapper, Header, Header1, Header3, Link }
+export { Container, Wrapper, Header, Header1, Header3, Link }

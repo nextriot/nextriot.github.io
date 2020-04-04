@@ -1,8 +1,8 @@
-import React from "react"
-import { StaticQuery, graphql } from "gatsby"
-import Image from "gatsby-image"
+import React from 'react'
+import { StaticQuery, graphql } from 'gatsby'
+import Image from 'gatsby-image'
 
-import { rhythm } from "../utils/typography"
+import { rhythm } from '../utils/typography'
 
 function Bio() {
   return (
@@ -31,9 +31,9 @@ function Bio() {
               />
             </div>
             <p style={{ maxWidth: 350 }}>
-              Personal blog of{" "}
+              Personal blog of{' '}
               <a href="https://mobile.twitter.com/nextriot">{author}</a>.
-              <span style={{ display: "block" }}>
+              <span style={{ display: 'block' }}>
                 Musings on all things React &amp; React Native.
               </span>
             </p>

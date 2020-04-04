@@ -1,3 +1,7 @@
+// @ts-nocheck
+
+const path = require('path')
+
 module.exports = {
   siteMetadata: {
     title: `Kyle Gillen`,
@@ -22,6 +26,13 @@ module.exports = {
       options: {
         path: `${__dirname}/content/assets`,
         name: `assets`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/assets`,
+        name: `static assets`,
       },
     },
     {
@@ -130,7 +141,7 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `content/assets/gatsby-icon.png`,
+        icon: `src/assets/gatsby-icon.png`,
       },
     },
     `gatsby-plugin-offline`,
@@ -147,9 +158,22 @@ module.exports = {
       resolve: `gatsby-plugin-typescript`,
       options: {
         isTSX: true, // defaults to false
-        jsxPragma: `jsx`, // defaults to "React"
         allExtensions: true, // defaults to false
       },
     },
+    {
+      resolve: `gatsby-plugin-alias-imports`,
+      options: {
+        alias: {
+          '@/components': path.resolve(__dirname, 'src/components'),
+          '@/utils': path.resolve(__dirname, 'src/utils'),
+          '@/assets': path.resolve(__dirname, 'src/assets'),
+          '@/pages': path.resolve(__dirname, 'src/pages'),
+          '@/templates': path.resolve(__dirname, 'src/templates'),
+        },
+        extensions: [],
+      },
+    },
+    `gatsby-plugin-eslint`,
   ],
 }

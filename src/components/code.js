@@ -1,37 +1,37 @@
-import React from "react"
-import Highlight, { defaultProps } from "prism-react-renderer"
-import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live"
-import styled from "styled-components"
+import React from 'react'
+import Highlight, { defaultProps } from 'prism-react-renderer'
+import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
+import styled from 'styled-components'
 
 const theme = {
   plain: {
-    backgroundColor: "var(--codeBg)",
-    color: "var(--codeText0)",
+    backgroundColor: 'var(--codeBg)',
+    color: 'var(--codeText0)',
     fontFamily:
-      "Consolas, Menlo, Monaco, source-code-pro, Courier New, monospace",
-    fontSize: "0.85rem",
+      'Consolas, Menlo, Monaco, source-code-pro, Courier New, monospace',
+    fontSize: '0.85rem',
     lineHeight: 1.55,
   },
   styles: [
     {
       types: [
-        "boolean",
-        "string",
-        "entity",
-        "url",
-        "attr-value",
-        "keyword",
-        "control",
-        "directive",
-        "unit",
-        "statement",
-        "regex",
-        "at-rule",
-        "placeholder",
-        "variable",
+        'boolean',
+        'string',
+        'entity',
+        'url',
+        'attr-value',
+        'keyword',
+        'control',
+        'directive',
+        'unit',
+        'statement',
+        'regex',
+        'at-rule',
+        'placeholder',
+        'variable',
       ],
       style: {
-        color: "var(--codeText1)",
+        color: 'var(--codeText1)',
       },
     },
   ],
@@ -62,6 +62,10 @@ const Pre = styled.pre`
 
 const CustomLiveEditor = styled(LiveEditor)`
   border-radius: 10px;
+  margin-bottom: 3rem;
+`
+const CustomLivePreview = styled(LivePreview)`
+  margin-bottom: 3rem;
 `
 
 const RE = /{([\d,-]+)}/
@@ -71,8 +75,8 @@ const calculateLinesToHighlight = (meta) => {
     return () => false
   } else {
     const lineNumbers = RE.exec(meta)[1]
-      .split(",")
-      .map((v) => v.split("-").map((v) => parseInt(v, 10)))
+      .split(',')
+      .map((v) => v.split('-').map((v) => parseInt(v, 10)))
     return (index) => {
       const lineNumber = index + 1
       const inRange = lineNumbers.some(([start, end]) =>
@@ -85,12 +89,12 @@ const calculateLinesToHighlight = (meta) => {
 
 export const Code = ({ codeString, language, metastring, ...props }) => {
   const shouldHighlightLine = calculateLinesToHighlight(metastring)
-  if (props["react-live"]) {
+  if (props['react-live']) {
     return (
       <LiveProvider code={codeString} noInline={true} theme={theme}>
-        <CustomLiveEditor padding={"1.3125rem"} />
+        <CustomLiveEditor padding={'1.3125rem'} />
         <LiveError />
-        <LivePreview />
+        <CustomLivePreview />
       </LiveProvider>
     )
   } else {
