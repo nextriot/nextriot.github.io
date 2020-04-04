@@ -33,6 +33,23 @@ const renderIcon = (icon: string) => (
   />
 )
 
+const renderThemeToggle = () => (
+  <ThemeToggler>
+    {({ theme, toggleTheme }) => (
+      <Toggle
+        icons={{
+          checked: renderIcon(sun),
+          unchecked: renderIcon(moon),
+        }}
+        checked={theme === 'dark'}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          toggleTheme(e.target.checked ? 'dark' : 'light')
+        }
+      />
+    )}
+  </ThemeToggler>
+)
+
 interface Props {
   location: {
     pathname: string
@@ -46,20 +63,7 @@ const Layout = ({ location, title, children }: Props) => (
     <Wrapper>
       <Header>
         {renderHeader(location.pathname === ROOT_PATH, title)}
-        <ThemeToggler>
-          {({ theme, toggleTheme }) => (
-            <Toggle
-              icons={{
-                checked: renderIcon(sun),
-                unchecked: renderIcon(moon),
-              }}
-              checked={theme === 'dark'}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                toggleTheme(e.target.checked ? 'dark' : 'light')
-              }
-            />
-          )}
-        </ThemeToggler>
+        {renderThemeToggle()}
       </Header>
       {children}
     </Wrapper>
