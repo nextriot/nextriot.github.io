@@ -1,54 +1,9 @@
 import React, { ReactNode } from 'react'
-import { ThemeToggler } from 'gatsby-plugin-dark-mode'
 
-import Toggle from './Toggle/Toggle'
-import {
-  Container,
-  Wrapper,
-  Header,
-  Header1,
-  Header3,
-  Link,
-} from './styles/Layout.style'
+import { rhythm } from '@/utils/typography'
 
-import sun from '../assets/sun.png'
-import moon from '../assets/moon.png'
-
-const ROOT_PATH = `${__PATH_PREFIX__}/`
-
-const renderHeader = (isRootPath: boolean, title: string) => {
-  const largeHeader = (child: ReactNode) => <Header1>{child}</Header1>
-  const mediumHeader = (child: ReactNode) => <Header3>{child}</Header3>
-  const link = <Link to={`/`}>{title}</Link>
-  return isRootPath ? largeHeader(link) : mediumHeader(link)
-}
-
-const renderIcon = (icon: string) => (
-  <img
-    src={icon}
-    width="16"
-    height="16"
-    role="presentation"
-    style={{ pointerEvents: 'none' }}
-  />
-)
-
-const renderThemeToggle = () => (
-  <ThemeToggler>
-    {({ theme, toggleTheme }) => (
-      <Toggle
-        icons={{
-          checked: renderIcon(sun),
-          unchecked: renderIcon(moon),
-        }}
-        checked={theme === 'dark'}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          toggleTheme(e.target.checked ? 'dark' : 'light')
-        }
-      />
-    )}
-  </ThemeToggler>
-)
+import { Container } from './styles/Layout.style'
+import Header from './Header'
 
 interface Props {
   location: {
@@ -60,13 +15,17 @@ interface Props {
 
 const Layout = ({ location, title, children }: Props) => (
   <Container>
-    <Wrapper>
-      <Header>
-        {renderHeader(location.pathname === ROOT_PATH, title)}
-        {renderThemeToggle()}
-      </Header>
+    <div
+      style={{
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        maxWidth: rhythm(24),
+        padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
+      }}
+    >
+      <Header pathname={location.pathname} title={title}></Header>
       {children}
-    </Wrapper>
+    </div>
   </Container>
 )
 

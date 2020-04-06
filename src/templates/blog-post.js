@@ -10,7 +10,6 @@ class BlogPostTemplate extends React.Component {
     const post = this.props.data.mdx
     const siteTitle = this.props.data.site.siteMetadata.title
     const { previous, next } = this.props.pageContext
-    console.log(this.props.pageContext)
     const discussUrl = `https://mobile.twitter.com/search?q=${encodeURIComponent(
       `https://kylegillen.com${post.fields.slug}`
     )}`
@@ -41,7 +40,7 @@ class BlogPostTemplate extends React.Component {
           </footer>
         </article>
         <aside>
-          <Signup></Signup>
+          {/* <Signup></Signup> */}
           <h3
             style={{
               fontFamily: 'Montserrat, sans-serif',

@@ -5,5 +5,6 @@ import Footer from './Footer'
 import SEO from './seo'
 import Toggle from './Toggle/Toggle'
 import Signup from './Signup'
+import Header from './Header'
 
-export { Bio, Layout, Code, Footer, SEO, Toggle, Signup }
+export { Bio, Layout, Code, Footer, SEO, Toggle, Signup, Header }
