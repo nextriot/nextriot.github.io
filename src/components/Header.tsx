@@ -32,12 +32,26 @@ const renderIcon = (icon: string) => (
   />
 )
 
+const getTheme = (theme: unknown) => {
+  if (typeof localStorage !== 'undefined') {
+    return localStorage.getItem('theme')
+  } else if (typeof window !== 'undefined') {
+    return window.__theme
+  } else {
+    return theme || 'light'
+  }
+}
+
 const renderThemeToggle = () => (
   <ThemeToggler>
     {({ theme, toggleTheme }) => {
       // FIX: bug in theme toggler
       // `theme` is set to null on re-render
-      const t = theme || window.__theme
+      // let t = theme || (typeof window !== 'undefined' ? window.__theme : null)
+      // if (!t && typeof localStorage !== 'undefined') {
+      //   t = localStorage.getItem('theme')
+      // }
+      const t = getTheme(theme)
       return (
         <Toggle
           icons={{
@@ -63,7 +77,7 @@ const Header = ({ title, pathname }: Props) => {
   return (
     <HeaderWrapper>
       {renderHeader(pathname === ROOT_PATH, title)}
-      {renderThemeToggle()}
+      {/* {renderThemeToggle()} */}
     </HeaderWrapper>
   )
 }
