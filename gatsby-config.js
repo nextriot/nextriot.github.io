@@ -14,6 +14,7 @@ module.exports = {
     `gatsby-remark-reading-time`,
     `gatsby-plugin-styled-components`,
     `gatsby-image`,
+    `gatsby-plugin-postcss`,
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
