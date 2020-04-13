@@ -1,55 +1,49 @@
-// @ts-nocheck
+const { resolve } = require('path')
+const { createFilePath } = require('gatsby-source-filesystem')
 
-const path = require(`path`)
-const { createFilePath } = require(`gatsby-source-filesystem`)
-
-exports.createPages = ({ graphql, actions }) => {
+exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
-
-  const blogPost = path.resolve(`./src/templates/blog-post.js`)
-  return graphql(
-    `
-      {
-        allMdx(
-          sort: { fields: [frontmatter___date], order: DESC }
-          limit: 1000
-        ) {
-          edges {
-            node {
-              id
-              fields {
-                slug
+  const blogPost = resolve(`./src/templates/blog-post.tsx`)
+  const { data } = await graphql(`
+    {
+      allMdx(sort: { fields: [frontmatter___date], order: DESC }, limit: 1000) {
+        edges {
+          node {
+            id
+            fields {
+              slug
+              readingTime {
+                minutes
+                text
               }
-              frontmatter {
-                title
-              }
-              body
             }
+            frontmatter {
+              title
+              date
+            }
+            body
           }
         }
       }
-    `
-  ).then((result) => {
-    if (result.errors) {
-      throw result.errors
     }
+  `).catch((error) => console.log(error))
 
-    // Create blog posts pages.
-    const posts = result.data.allMdx.edges
+  const posts = data.allMdx.edges
 
-    posts.forEach((post, index) => {
-      const previous = index === posts.length - 1 ? null : posts[index + 1].node
-      const next = index === 0 ? null : posts[index - 1].node
+  posts.forEach(({ node }, index) => {
+    const previous = index === posts.length - 1 ? null : posts[index + 1].node
+    const next = index === 0 ? null : posts[index - 1].node
+    const dir = `/posts`
 
-      createPage({
-        path: post.node.fields.slug,
-        component: blogPost,
-        context: {
-          slug: post.node.fields.slug,
-          previous,
-          next,
-        },
-      })
+    createPage({
+      path: `${dir}${node.fields.slug}`,
+      component: blogPost,
+      context: {
+        slug: node.fields.slug,
+        dir,
+        previous,
+        next,
+      },
     })
   })
 }
@@ -57,7 +51,7 @@ exports.createPages = ({ graphql, actions }) => {
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
-  if (node.internal.type === `Mdx`) {
+  if (node.internal.type === 'Mdx') {
     const value = createFilePath({ node, getNode })
     createNodeField({
       name: `slug`,

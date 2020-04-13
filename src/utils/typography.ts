@@ -1,24 +1,38 @@
 import Typography from 'typography'
-import Wordpress2016 from 'typography-theme-wordpress-2016'
-import './global.css'
+import Github from 'typography-theme-github'
 
-Wordpress2016.overrideThemeStyles = () => {
+const fonts = [
+  'AGaramondPro',
+  'Adobe Garamond Pro',
+  'Cormorant Garamond',
+  'Garamond',
+  'Georgia',
+  'serif',
+]
+
+Github.baseFontSize = '16px'
+Github.headerFontFamily = fonts
+Github.bodyFontFamily = fonts
+Github.googleFonts = [
+  {
+    name: 'Cormorant Garamond',
+    styles: ['400'],
+  },
+]
+
+Github.overrideThemeStyles = ({ rhythm }) => {
   return {
-    a: {
-      color: 'var(--primary)',
-    },
-    'a.gatsby-resp-image-link': {
-      boxShadow: `none`,
-    },
+    a: { color: 'red' },
+    'a.gatsby-resp-image-link': { boxShadow: `none` },
+    p: { marginBottom: rhythm(2 / 1.6) },
+    h1: { fontSize: '44px', fontWeight: 400 },
   }
 }
 
-delete Wordpress2016.googleFonts
-
-const typography = new Typography(Wordpress2016)
+const typography = new Typography({ ...Github, includeNormalize: false })
 
 // Hot reload typography in development.
-if (process.env.NODE_ENV !== `production`) {
+if (process.env.NODE_ENV !== 'production') {
   typography.injectStyles()
 }
 
