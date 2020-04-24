@@ -12,6 +12,18 @@ export const usePostQuery = (slug: string) => {
             frontmatter {
               title
               date(formatString: "MMMM DD, YYYY")
+              spoiler
+              category
+              featuredImageAlt
+              attribute
+              attributeLink
+              featuredImage {
+                childImageSharp {
+                  fluid {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
             }
             body
             fields {

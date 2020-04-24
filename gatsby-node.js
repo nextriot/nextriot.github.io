@@ -1,5 +1,8 @@
 const { resolve } = require('path')
-const { createFilePath } = require('gatsby-source-filesystem')
+const {
+  createFilePath,
+  createRemoteFileNode,
+} = require('gatsby-source-filesystem')
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
@@ -19,7 +22,6 @@ exports.createPages = async ({ graphql, actions }) => {
             }
             frontmatter {
               title
-              date
             }
             body
           }
@@ -48,9 +50,16 @@ exports.createPages = async ({ graphql, actions }) => {
   })
 }
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
-
+exports.onCreateNode = async ({
+  node,
+  actions,
+  store,
+  cache,
+  getNode,
+  createNodeId,
+}) => {
+  const { createNodeField, createNode } = actions
+  // Add slug field to frontmatter
   if (node.internal.type === 'Mdx') {
     const value = createFilePath({ node, getNode })
     createNodeField({

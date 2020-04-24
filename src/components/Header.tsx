@@ -1,27 +1,41 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
-import { Container } from './styles/shared.style'
-import { Wrapper, Section } from './styles/header.style'
+import {
+  Wrapper,
+  Section,
+  Header as SiteHeader,
+  LogoWrapper,
+  Logo,
+  Container,
+} from './styles/header.style'
 
 import { useSiteQuery } from '@/hooks/useSiteQuery'
 import Navigation from './navigation'
 
+const logo = require('../images/kylegillen.svg')
+
 const Header = () => {
   const { title } = useSiteQuery()
   return (
-    <header>
+    <SiteHeader>
       <Container>
         <Wrapper>
           <Section>
-            <Link to="/">{title}</Link>
+            <LogoWrapper>
+              <Logo>
+                <Link to="/">
+                  <img src={logo} alt="Kyle Gillen" />
+                </Link>
+              </Logo>
+            </LogoWrapper>
           </Section>
-          <Section>
+          {/* <Section>
             <Navigation />
-          </Section>
+          </Section> */}
         </Wrapper>
       </Container>
-    </header>
+    </SiteHeader>
   )
 }
 

@@ -8,6 +8,9 @@ export interface PostContext {
 }
 
 interface SiblingContext {
+  frontmatter: {
+    title: string
+  }
   fields: {
     slug: string
   }

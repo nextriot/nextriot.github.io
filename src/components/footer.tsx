@@ -1,10 +1,10 @@
 import React from 'react'
-import { Container } from './styles/shared.style'
-import { Wrapper } from './styles/footer.style'
+import { Container, Wrapper } from './styles/layout.style'
+import { Footer as SiteFooter } from './styles/footer.style'
 
-function footer() {
+const Footer = () => {
   return (
-    <footer style={{ backgroundColor: 'black', color: 'white' }}>
+    <SiteFooter style={{ backgroundColor: 'black', color: 'white' }}>
       <Container>
         <Wrapper>
           © {new Date().getFullYear()}, Built with
@@ -12,8 +12,8 @@ function footer() {
           <a href="https://www.gatsbyjs.org">Gatsby</a>
         </Wrapper>
       </Container>
-    </footer>
+    </SiteFooter>
   )
 }
 
-export default footer
+export default Footer

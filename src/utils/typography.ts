@@ -1,7 +1,7 @@
-import Typography from 'typography'
-import Github from 'typography-theme-github'
+import Typography, { TypographyOptions } from 'typography'
+import Theme from './theme'
 
-const fonts = [
+const mainFonts = [
   'AGaramondPro',
   'Adobe Garamond Pro',
   'Cormorant Garamond',
@@ -10,26 +10,35 @@ const fonts = [
   'serif',
 ]
 
-Github.baseFontSize = '16px'
-Github.headerFontFamily = fonts
-Github.bodyFontFamily = fonts
-Github.googleFonts = [
+const googleFonts = [
   {
     name: 'Cormorant Garamond',
+    styles: ['400', '700', 'italic'],
+  },
+  {
+    name: 'Oranienbaum',
     styles: ['400'],
+  },
+  {
+    name: 'Roboto',
+    styles: ['300', '400', '600'],
   },
 ]
 
-Github.overrideThemeStyles = ({ rhythm }) => {
-  return {
-    a: { color: 'red' },
-    'a.gatsby-resp-image-link': { boxShadow: `none` },
-    p: { marginBottom: rhythm(2 / 1.6) },
-    h1: { fontSize: '44px', fontWeight: 400 },
-  }
+const options: TypographyOptions = {
+  baseFontSize: '20px',
+  baseLineHeight: 1.4,
+  scaleRatio: 5 / 2,
+  includeNormalize: false,
+  googleFonts,
+  headerWeight: 400,
+  bodyWeight: 400,
+  headerFontFamily: mainFonts,
+  bodyFontFamily: mainFonts,
+  overrideThemeStyles: Theme,
 }
 
-const typography = new Typography({ ...Github, includeNormalize: false })
+const typography = new Typography(options)
 
 // Hot reload typography in development.
 if (process.env.NODE_ENV !== 'production') {

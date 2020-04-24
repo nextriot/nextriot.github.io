@@ -1,4 +1,21 @@
 /**
+ * Variables
+ */
+
+body {
+  --textColor: #000000;
+  --primaryColor: #db162f;
+  --primaryDark: #bd001c;
+  --secondaryColor: #74a4bc;
+  --black: #000000;
+  --white: #ffffff;
+  --lightGrey: #d3dce6;
+  --lightGreyText: #5e6a74;
+  --formBg: #eaebed;
+  color: var(--textColor);
+}
+
+/**
  * PrismJS
  * Highlight + Line Numbering
  */
@@ -32,12 +49,16 @@
   line-height: 1.55;
 }
 
+.gatsby-highlight pre[class*='language-'] pre[class*='language-'] {
+  max-width: 400px;
+}
+
 .gatsby-highlight pre[class*='language-'].line-numbers {
   padding-left: 2.8em;
 }
 
 /**
-* Live Code
+* React Live Code Blocks
 */
 
 .gatsby-highlight[data-language='jsxreact-live'] {
@@ -60,4 +81,184 @@
   padding: 8px 12px;
   background-color: #fd8835;
   color: white;
+}
+
+/**
+* Dropcap styling
+*/
+
+.dropcap {
+  float: left;
+  font-size: 6.4rem;
+  line-height: 3.5rem;
+  margin: 0;
+  padding-right: 0.3rem;
+}
+
+/* hide visually from eyes, but not aurally from screen readers */
+.invisible {
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  top: auto;
+  white-space: nowrap;
+  width: 1px;
+}
+
+p > span {
+  font-variant: small-caps;
+  text-transform: lowercase;
+  letter-spacing: 1px;
+  /* font-weight: 700; */
+}
+
+blockquote .dropcap {
+  float: none;
+  font-size: inherit;
+  line-height: inherit;
+  padding: inherit;
+}
+
+blockquote p > span {
+  font-variant: normal;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+/* Blockquote anchor styling */
+
+blockquote:after {
+  content: '';
+  display: block;
+  width: 100px;
+  border-bottom: 4px solid var(--primaryColor);
+  padding-top: 1.25rem;
+}
+
+/** 
+* Remark Images Plugin
+* 16:9 Ratio for images
+*/
+
+.gatsby-resp-image-wrapper {
+  height: 0;
+  position: relative;
+  padding-bottom: 56.5%;
+}
+
+.gatsby-resp-image-wrapper > a,
+.gatsby-resp-image-background-image {
+  padding: 0 !important;
+  position: absolute !important;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.gatsby-resp-image-image {
+  object-fit: cover;
+}
+
+/** 
+* Heading styles
+*/
+
+/* Anchor tag styling */
+h2 a,
+h3 a,
+h4 a,
+h5 a {
+  margin-right: 0.3rem;
+}
+
+h4 > em,
+h5 > em {
+  padding-left: 0.2rem;
+  padding-right: 0.3rem;
+}
+
+h3 > em {
+  padding-right: 0.35rem;
+}
+
+/**
+* Responsive styling
+*/
+
+@media (min-width: 640px) {
+  h1 {
+    font-size: 2.2rem;
+    margin-bottom: 0.3rem;
+  }
+  h2 {
+    margin: 1.6rem 0;
+  }
+  h3 {
+    margin-top: 1.6rem;
+  }
+  h4 {
+    font-size: 0.9rem;
+    margin-top: 1.6rem;
+  }
+  p.spoiler {
+    font-size: 1.2rem;
+  }
+  main {
+    padding: 1.6rem 2.4rem;
+  }
+  .article-body,
+  .article-footer {
+    margin: 0 auto;
+  }
+  .article-body section {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .article-header {
+    border-bottom: 1px solid #000;
+    padding: 0 0 1.6rem;
+    margin-bottom: 1.6rem;
+  }
+  .article-meta {
+    padding-bottom: 0;
+  }
+  blockquote {
+    font-size: 2rem;
+    line-height: 2.4rem;
+  }
+  .article-footer .social {
+    padding-top: 0.8rem;
+    margin-top: 0.8rem;
+    border-top: 1px solid var(--lightGrey);
+  }
+  .article-footer figure {
+    flex-basis: 102px;
+    max-width: 102px;
+    margin-right: 1.2rem;
+  }
+  .article-footer .social a,
+  .article-footer .social > span {
+    margin-right: 1.6rem;
+  }
+  .article-footer .social a span {
+    display: block;
+    margin-left: 0.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .article-header {
+    max-width: none;
+  }
+  .article-body,
+  .article-footer {
+    margin: 0;
+    max-width: none;
+  }
+
+  figure {
+    margin-right: 0.84rem;
+  }
 }

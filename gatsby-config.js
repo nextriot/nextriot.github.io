@@ -10,11 +10,11 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    `gatsby-transformer-remark`,
     `gatsby-remark-reading-time`,
     `gatsby-plugin-styled-components`,
+    `gatsby-transformer-remark`,
     `gatsby-image`,
-    `gatsby-plugin-postcss`,
+    `gatsby-remark-images`,
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
@@ -34,13 +34,17 @@ module.exports = {
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 590,
+              maxWidth: 720,
             },
           },
-          'gatsby-remark-autolink-headers',
-          `gatsby-remark-responsive-iframe`,
+          // {
+          //   resolve: require.resolve('./plugins/gatsby-remark-all-images'),
+          // },
           `gatsby-remark-copy-linked-files`,
+          `gatsby-remark-autolink-headers`,
+          `gatsby-remark-responsive-iframe`,
           `gatsby-remark-smartypants`,
+          `gatsby-remark-dropcap`,
         ],
       },
     },

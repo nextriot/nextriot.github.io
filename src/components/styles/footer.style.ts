@@ -1,8 +1,13 @@
 import styled from 'styled-components'
 import tw from 'twin.macro'
 
-const Wrapper = styled.div`
-  ${tw`bg-black text-white` as any}
+const Footer = styled.footer`
+  @media (min-width: 640px) {
+    padding: 0 2.4rem;
+  }
+  @media (min-width: 768px) {
+    padding: 0;
+  }
 `
 
-export { Wrapper }
+export { Footer }
